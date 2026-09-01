@@ -40,7 +40,7 @@ export async function GET() {
     }
   }
   const body: WindResponse = {
-    meta: { health: 'failed', fetchedAt, dataTimestamp: null, error: `No usable GFS analysis: ${errors.at(-1) ?? 'no cycles available'}` },
+    meta: { health: 'failed', fetchedAt, dataTimestamp: null, error: `No usable GFS analysis: ${errors[errors.length - 1] ?? 'no cycles available'}` },
     data: null,
   }
   return Response.json(body, { status: 503, headers: { 'Cache-Control': 'no-store', 'Access-Control-Allow-Origin': '*' } })
