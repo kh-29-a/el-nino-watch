@@ -18,6 +18,7 @@ export function OutlookChart({ result, loading }: OutlookChartProps) {
       <div className="outlook-unavailable">
         <strong>—</strong>
         <p>{loading ? 'Loading official NOAA CPC forecast…' : 'Forecast temporarily unavailable.'}</p>
+        <small className="update-interval">Updates monthly</small>
       </div>
     )
   }
@@ -63,7 +64,7 @@ export function OutlookChart({ result, loading }: OutlookChartProps) {
         </div>
       </div>
 
-      <p className="outlook-source">Official NOAA CPC ENSO Outlook <span>Issued {data.issued}</span></p>
+      <p className="outlook-source">Official NOAA CPC ENSO Outlook <span>Issued {data.issued} · Updates monthly</span></p>
     </div>
   )
 }

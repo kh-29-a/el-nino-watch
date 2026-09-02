@@ -24,8 +24,8 @@ export function PacificMap({ wind, loading }: PacificMapProps) {
       <div className="sst-longitudes"><span>120°E</span><span>180°</span><span>120°W</span><span>80°W</span></div>
     </div>
     <div className="wind-map-footer">
-      <span>Source check</span>
-      <strong>{field ? `NOAA/NCEP GFS · 10 m U/V · valid ${new Date(field.validTimestamp).toLocaleString(undefined, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'UTC', timeZoneName: 'short' })}` : '10 m U/V unavailable'}</strong>
+      <div><span>Update interval</span><strong>Every 6 hours</strong></div>
+      <div><span>Source observation</span><strong>{field ? `NOAA/NCEP GFS · 10 m U/V · valid ${new Date(field.validTimestamp).toLocaleString(undefined, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'UTC', timeZoneName: 'short' })}` : '10 m U/V unavailable'}</strong></div>
     </div>
     </>
   )

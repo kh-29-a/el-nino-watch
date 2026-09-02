@@ -47,9 +47,9 @@ export function HomePage({ enso, loading, wind, windLoading }: HomePageProps) {
       <section className="page-section content-width" id="conditions">
         <SectionHeader title="Current Conditions" />
         <div className="data-grid">
-          <DataBlock title="Niño 3.4 SST" result={enso?.sources.nino34} loading={loading} decimals={2} unit="°C" referenceLines={[0.5, 0, -0.5]} />
-          <DataBlock title="SOI" result={enso?.sources.soi} loading={loading} decimals={1} />
-          <DataBlock title="ONI" result={enso?.sources.oni} loading={loading} decimals={2} unit="°C" referenceLines={[0.5, 0, -0.5]} />
+          <DataBlock title="Niño 3.4 SST" result={enso?.sources.nino34} loading={loading} decimals={2} unit="°C" referenceLines={[0.5, 0, -0.5]} updateInterval="weekly" />
+          <DataBlock title="SOI" result={enso?.sources.soi} loading={loading} decimals={1} updateInterval="monthly" />
+          <DataBlock title="ONI" result={enso?.sources.oni} loading={loading} decimals={2} unit="°C" referenceLines={[0.5, 0, -0.5]} updateInterval="monthly" />
         </div>
       </section>
 

@@ -8,6 +8,7 @@ interface DataBlockProps {
   decimals: number
   unit?: string
   referenceLines?: number[]
+  updateInterval: string
 }
 
 function formattedValue(value: number, decimals: number, unit = '') {
@@ -15,13 +16,13 @@ function formattedValue(value: number, decimals: number, unit = '') {
   return `${prefix}${value.toFixed(decimals)}${unit}`
 }
 
-export function DataBlock({ title, result, loading, decimals, unit, referenceLines }: DataBlockProps) {
+export function DataBlock({ title, result, loading, decimals, unit, referenceLines, updateInterval }: DataBlockProps) {
   const data = result?.data
   return (
     <article className="data-block">
       <div className="data-block-head">
         <h3>{title}</h3>
-        <span>{data?.period ?? 'Historical series'}</span>
+        <div><span>{data?.period ?? 'Historical series'}</span><small>Updates {updateInterval}</small></div>
       </div>
       {data ? (
         <>

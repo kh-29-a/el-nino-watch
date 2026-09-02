@@ -54,6 +54,7 @@ export function SstMap({ map, nino34, loading }: SstMapProps) {
 
       <div className="sst-map-footer">
         <div><span>Niño 3.4 anomaly</span><strong>{nino ? `${signed(nino.value)} · ${nino.interpretation.toLowerCase()}` : 'Temporarily unavailable'}</strong></div>
+        <div><span>Update interval</span><strong>Daily · typically 2–4 days behind</strong></div>
         <div><span>Map observation</span><strong>{mapData ? new Date(mapData.observationTimestamp).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) : 'Unavailable'}</strong></div>
       </div>
     </>

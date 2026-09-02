@@ -100,6 +100,8 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .data-block-head { display: flex; justify-content: space-between; gap: 10px; }
 .data-block h3 { margin: 0; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 .data-block-head span { color: #8b918e; font-family: 'DM Mono', monospace; font-size: 8px; text-transform: uppercase; }
+.data-block-head > div { display: grid; gap: 5px; text-align: right; }
+.data-block-head small, .update-interval { color: var(--accent); font-family: 'DM Mono', monospace; font-size: 8px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
 .empty-value { display: block; margin-top: 30px; font-size: 65px; font-weight: 400; line-height: 1; }
 .data-block > p, .outlook-placeholder p { margin: 14px 0 0; color: var(--muted); font-size: 12px; }
 .data-block .interpretation { color: var(--ink); font-weight: 600; }
@@ -164,6 +166,7 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .sst-map-footer { padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 25px; }
 .sst-map-footer > div { display: grid; gap: 6px; }
 .sst-map-footer > div:last-child { text-align: right; }
+.sst-map-footer > div:nth-child(2) { text-align: center; }
 .sst-map-footer span { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 8px; text-transform: uppercase; }
 .sst-map-footer strong { font-size: 12px; font-weight: 500; }
 .wind-map { margin-top: 14px; background: #e7ecee; }
@@ -176,6 +179,8 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .wind-unavailable strong { font-size: 12px; font-weight: 600; }
 .wind-unavailable span { margin-top: 4px; color: var(--muted); font-size: 10px; }
 .wind-map-footer { padding: 14px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; }
+.wind-map-footer > div { display: grid; gap: 6px; }
+.wind-map-footer > div:last-child { text-align: right; }
 .wind-map-footer span { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 8px; text-transform: uppercase; }
 .wind-map-footer strong { font-size: 11px; font-weight: 500; }
 
@@ -227,6 +232,9 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .sst-live-map { min-height: 210px; aspect-ratio: 2 / 1; }
   .sst-map-footer { flex-direction: column; }
   .sst-map-footer > div:last-child { text-align: left; }
+  .sst-map-footer > div:nth-child(2) { text-align: left; }
+  .wind-map-footer { flex-direction: column; }
+  .wind-map-footer > div:last-child { text-align: left; }
   .guide-item { grid-template-columns: 35px 1fr; gap: 13px; }
   .guide-item p, .guide-item small { grid-column: 2; }
   .about-grid { grid-template-columns: 1fr; }
