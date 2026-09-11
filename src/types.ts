@@ -4,6 +4,6 @@ export type IndicatorName =
   | 'ONI'
   | 'ENSO Outlook'
   | 'SST Map'
-  | 'Surface Wind'
+  | 'Trade Wind Index'
 
 export type RoutePath = '/' | '/guide' | '/about'

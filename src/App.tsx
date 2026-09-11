@@ -6,7 +6,7 @@ import { GuidePage } from './pages/GuidePage'
 import { HomePage } from './pages/HomePage'
 import type { RoutePath } from './types'
 import { useEnsoData } from './hooks/useEnsoData'
-import { useWindData } from './hooks/useWindData'
+import { useTradeWindData } from './hooks/useTradeWindData'
 
 function currentRoute(): RoutePath {
   if (window.location.pathname === '/guide') return '/guide'
@@ -17,7 +17,7 @@ function currentRoute(): RoutePath {
 export default function App() {
   const [route, setRoute] = useState<RoutePath>(currentRoute)
   const { data: enso, error: ensoError, loading } = useEnsoData()
-  const { data: wind, error: windError, loading: windLoading } = useWindData()
+  const { data: tradeWind, error: tradeWindError, loading: tradeWindLoading } = useTradeWindData()
 
   useEffect(() => {
     const handlePopState = () => setRoute(currentRoute())
@@ -33,8 +33,8 @@ export default function App() {
 
   return (
     <>
-      <Header route={route} onNavigate={navigate} enso={enso} wind={wind} endpointError={ensoError} windError={windError} />
-      {route === '/' && <HomePage enso={enso} wind={wind} loading={loading} windLoading={windLoading} />}
+      <Header route={route} onNavigate={navigate} enso={enso} tradeWind={tradeWind} endpointError={ensoError} tradeWindError={tradeWindError} />
+      {route === '/' && <HomePage enso={enso} tradeWind={tradeWind} loading={loading} tradeWindLoading={tradeWindLoading} />}
       {route === '/guide' && <GuidePage />}
       {route === '/about' && <AboutPage />}
       <Footer />

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { IndicatorName, RoutePath } from '../types'
 import type { EnsoResponse, SourceKey } from '../data/enso'
-import type { WindResponse } from '../data/wind'
+import type { TradeWindResponse } from '../data/tradeWind'
 
 const statusRows: IndicatorName[] = [
   'Niño 3.4',
@@ -9,7 +9,7 @@ const statusRows: IndicatorName[] = [
   'ONI',
   'ENSO Outlook',
   'SST Map',
-  'Surface Wind',
+  'Trade Wind Index',
 ]
 
 interface HeaderProps {
@@ -17,15 +17,15 @@ interface HeaderProps {
   onNavigate: (path: RoutePath) => void
   enso: EnsoResponse | null
   endpointError: string | null
-  wind?: WindResponse | null
-  windError: string | null
+  tradeWind?: TradeWindResponse | null
+  tradeWindError: string | null
 }
 
 const sourceForRow: Partial<Record<IndicatorName, SourceKey>> = {
   'Niño 3.4': 'nino34', SOI: 'soi', ONI: 'oni', 'ENSO Outlook': 'outlook', 'SST Map': 'sstMap',
 }
 
-export function Header({ route, onNavigate, enso, wind, endpointError, windError }: HeaderProps) {
+export function Header({ route, onNavigate, enso, tradeWind, endpointError, tradeWindError }: HeaderProps) {
   const [statusOpen, setStatusOpen] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
 
@@ -42,9 +42,9 @@ export function Header({ route, onNavigate, enso, wind, endpointError, windError
     setStatusOpen(false)
   }
 
-  const overall = enso?.overall === 'red' || (!enso && (endpointError || windError))
+  const overall = enso?.overall === 'red' || (!enso && (endpointError || tradeWindError))
     ? 'red'
-    : enso?.overall === 'green' && wind?.meta.health === 'healthy' ? 'green' : 'yellow'
+    : enso?.overall === 'green' && tradeWind?.meta.health === 'healthy' ? 'green' : 'yellow'
 
   return (
     <header className="site-header">
@@ -77,16 +77,16 @@ export function Header({ route, onNavigate, enso, wind, endpointError, windError
                 {statusRows.map((row) => {
                   const sourceKey = sourceForRow[row]
                   const source = sourceKey && enso?.sources[sourceKey]
-                  const isWind = row === 'Surface Wind'
-                  const label = isWind
-                    ? wind?.meta.health === 'healthy' ? 'Connected' : wind?.meta.health === 'degraded' ? 'Connected · stale' : wind || windError ? 'Unavailable' : 'Connecting'
+                  const isTradeWind = row === 'Trade Wind Index'
+                  const label = isTradeWind
+                    ? tradeWind?.meta.health === 'healthy' ? 'Connected' : tradeWind?.meta.health === 'degraded' ? 'Partial' : tradeWind || tradeWindError ? 'Unavailable' : 'Connecting'
                     : source?.meta.success
                       ? source.meta.stale ? 'Connected · stale' : 'Connected'
                       : enso || endpointError ? 'Unavailable' : 'Connecting'
                   return (
                     <div className="status-row" key={row}>
                       <span>{row}</span>
-                      <small className={isWind ? wind?.meta.health === 'healthy' ? 'success' : wind?.meta.health === 'degraded' ? 'stale' : 'problem' : source?.meta.success ? 'success' : 'problem'}>{label}</small>
+                      <small className={isTradeWind ? tradeWind?.meta.health === 'healthy' ? 'success' : tradeWind?.meta.health === 'degraded' ? 'stale' : 'problem' : source?.meta.success ? 'success' : 'problem'}>{label}</small>
                     </div>
                   )
                 })}

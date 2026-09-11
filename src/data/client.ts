@@ -1,8 +1,10 @@
 import type { EnsoResponse } from './enso'
 import type { WindResponse } from './wind'
+import type { TradeWindResponse } from './tradeWind'
 
 let cachedRequest: Promise<EnsoResponse> | null = null
 let cachedWindRequest: Promise<WindResponse> | null = null
+let cachedTradeWindRequest: Promise<TradeWindResponse> | null = null
 
 function endpoint(path: string) {
   return window.location.hostname.endsWith('edgeone.cool') ? `https://el-nino-watch.vercel.app${path}` : path
@@ -38,4 +40,20 @@ export function loadWindData() {
       })
   }
   return cachedWindRequest
+}
+
+export function loadTradeWindData() {
+  if (!cachedTradeWindRequest) {
+    cachedTradeWindRequest = fetch(endpoint('/api/trade-winds'))
+      .then(async (response) => {
+        const body = await response.json() as TradeWindResponse
+        if (!response.ok && !body.meta) throw new Error(`Trade-wind endpoint returned HTTP ${response.status}`)
+        return body
+      })
+      .catch((error) => {
+        cachedTradeWindRequest = null
+        throw error
+      })
+  }
+  return cachedTradeWindRequest
 }

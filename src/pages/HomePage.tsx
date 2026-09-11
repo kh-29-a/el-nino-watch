@@ -4,13 +4,13 @@ import { SectionHeader } from '../components/SectionHeader'
 import type { EnsoResponse } from '../data/enso'
 import { OutlookChart } from '../components/OutlookChart'
 import { SstMap } from '../components/SstMap'
-import type { WindResponse } from '../data/wind'
+import type { TradeWindResponse } from '../data/tradeWind'
 
 interface HomePageProps {
   enso: EnsoResponse | null
   loading: boolean
-  wind?: WindResponse | null
-  windLoading: boolean
+  tradeWind?: TradeWindResponse | null
+  tradeWindLoading: boolean
 }
 
 function value(value: number | undefined, decimals: number, unit = '') {
@@ -18,7 +18,7 @@ function value(value: number | undefined, decimals: number, unit = '') {
   return `${value > 0 ? '+' : ''}${value.toFixed(decimals)}${unit}`
 }
 
-export function HomePage({ enso, loading, wind, windLoading }: HomePageProps) {
+export function HomePage({ enso, loading, tradeWind, tradeWindLoading }: HomePageProps) {
   const nino34 = enso?.sources.nino34.data?.value
   const soi = enso?.sources.soi.data?.value
   const oni = enso?.sources.oni.data?.value
@@ -64,8 +64,8 @@ export function HomePage({ enso, loading, wind, windLoading }: HomePageProps) {
       </section>
 
       <section className="page-section map-section content-width" id="winds">
-        <SectionHeader title="Pacific Trade Winds" subtitle="Surface Wind" />
-        <PacificMap wind={wind} loading={windLoading} />
+        <SectionHeader title="Pacific Trade Wind Anomaly" subtitle="Atmosphere" />
+        <PacificMap tradeWind={tradeWind} loading={tradeWindLoading} />
       </section>
     </main>
   )
